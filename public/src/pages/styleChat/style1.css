@@ -168,8 +168,8 @@ body{
       padding: 1rem;
   }
   .cet-body{
-      background: #483c6ff5;
-      padding-bottom: 10rem;
+      /* background: #483c6ff5; */
+      padding-bottom: 10px;
       padding-top: 80px;  /*80px about kea*/
   }
   .icon-group{

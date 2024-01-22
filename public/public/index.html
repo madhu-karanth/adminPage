@@ -1,40 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,400italic,300italic" rel="stylesheet" type="text/css">
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 0.5s ease-in-out;
-      }
-    </style>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Lato', sans-serif; /* Add your preferred font-family */
+    }
 
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    #backgroundContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 300%;
+      height: 100%;
+      z-index: -1;
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .backgroundImage {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(75%); /* Adjust the filter as needed */
+    }
+
+    #contentContainer {
+      position: relative;
+      z-index: 1; /* Ensure the content is above the background */
+      height: 100vh; /* Set the height to 100% of the viewport height */
+      overflow: auto;
+      background-repeat: no-repeat;
+    }
+  </style>
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <title>React App</title>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="backgroundContainer">
+    <div class="backgroundImage"></div>
+    <div class="backgroundImage"></div>
+    <div class="backgroundImage"></div>
+  </div>
+
+  <div id="contentContainer">
     <div id="root"></div>
+  </div>
+  <script>
+    let currentIndex = 0;
+    const backgroundContainer = document.getElementById("backgroundContainer");
+    const backgroundImages = document.querySelectorAll(".backgroundImage");
+    const images = ['url(images/image1.webp)', 'url(images/image2.jpg)', 'url(images/image3.jpg)'];
 
-    <script>
-      function changeBg() {
-        const section = document.querySelector("body");
-        const images = ['url(images/image1.webp)', 'url(images/image2.png)', 'url(images/image3.jpg)'];
-        const bg = images[Math.floor(Math.random() * images.length)];
-        section.style.backgroundImage = bg;
-      }
-      setInterval(changeBg, 5000);
-    </script>
-  </body>
+    function changeBg() {
+      currentIndex = (currentIndex + 1) % images.length;
+      const bg = images[currentIndex];
+  
+      // Apply sliding effect by changing transform property
+      backgroundImages.forEach((image, index) => {
+        image.style.backgroundImage = bg;
+        image.style.backgroundSize = 'cover';
+        image.style.backgroundPosition = 'center';
+        image.style.transform = `translateX(-${currentIndex * 100}%)`;
+      });
+    }
+    setInterval(changeBg, 2500);
+  </script>
+</body>
 </html>
