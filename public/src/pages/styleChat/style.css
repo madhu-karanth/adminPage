@@ -60,6 +60,17 @@ body {
     background-position: center;
    /* filter: grayscale(50%); */
 }
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* background-color: #333; Add your preferred background color */
+    color: white; /* Add your preferred text color */
+    /* padding: 10px; */
+    text-align: center;
+    z-index: 100; /* Make sure the z-index is higher than the background container */
+  }
 .background-overlay {
     position: fixed;
     top: 0;
