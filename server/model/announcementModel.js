@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const announcementSchema = new mongoose.Schema({
     textEn : {
         type: String,
         required: true,
@@ -20,3 +20,5 @@ const userSchema = new mongoose.Schema({
         unique: true,
     }
 })
+
+module.exports = mongoose.model("Announcements",announcementSchema);

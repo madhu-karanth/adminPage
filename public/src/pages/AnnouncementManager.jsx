@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { announcementsRoute } from '../utils/APIRoutes'
+import { announcementsRoute } from '../utils/APIRoutes';
+
 const AnnouncementManager = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [newAnnouncement, setNewAnnouncement] = useState({ textEn: '', textKan: '', videoUrl: '' });
@@ -12,7 +13,7 @@ const AnnouncementManager = () => {
 
   const fetchAnnouncements = async () => {
     try {
-      const response = await axios.get(announcementsRoute); // Replace with your API endpoint
+      const response = await axios.get(announcementsRoute);
       setAnnouncements(response.data);
     } catch (error) {
       console.error('Error fetching announcements:', error);
@@ -21,9 +22,9 @@ const AnnouncementManager = () => {
 
   const addAnnouncement = async () => {
     try {
-      await axios.post(announcementsRoute, newAnnouncement); // Replace with your API endpoint
-      fetchAnnouncements(); // Fetch updated announcements after adding a new one
-      setNewAnnouncement({ text: '', videoUrl: '' });
+      await axios.post(announcementsRoute, newAnnouncement);
+      fetchAnnouncements();
+      setNewAnnouncement({ textEn: '', textKan: '', videoUrl: '' });
     } catch (error) {
       console.error('Error adding announcement:', error);
     }
@@ -31,8 +32,8 @@ const AnnouncementManager = () => {
 
   const updateAnnouncement = async () => {
     try {
-      await axios.put(`${announcementsRoute}${editingAnnouncement.id}`, editingAnnouncement); // Replace with your API endpoint
-      fetchAnnouncements(); // Fetch updated announcements after modifying one
+      await axios.put(`${announcementsRoute}${editingAnnouncement.id}`, editingAnnouncement);
+      fetchAnnouncements();
       setEditingAnnouncement(null);
     } catch (error) {
       console.error('Error updating announcement:', error);
@@ -41,8 +42,8 @@ const AnnouncementManager = () => {
 
   const deleteAnnouncement = async (announcementId) => {
     try {
-      await axios.delete(`${announcementsRoute}${announcementId}`); // Replace with your API endpoint
-      fetchAnnouncements(); // Fetch updated announcements after deleting one
+      await axios.delete(`${announcementsRoute}${announcementId}`);
+      fetchAnnouncements();
     } catch (error) {
       console.error('Error deleting announcement:', error);
     }
@@ -58,16 +59,19 @@ const AnnouncementManager = () => {
               <>
                 <input
                   type="text"
+                  placeholder="English Text"
                   value={editingAnnouncement.textEn}
-                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, text: e.target.value })}
+                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textEn: e.target.value })}
                 />
                 <input
                   type="text"
+                  placeholder="Kannada Text"
                   value={editingAnnouncement.textKan}
-                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, text: e.target.value })}
+                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textKan: e.target.value })}
                 />
                 <input
                   type="text"
+                  placeholder="Video URL"
                   value={editingAnnouncement.videoUrl}
                   onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, videoUrl: e.target.value })}
                 />
@@ -76,7 +80,7 @@ const AnnouncementManager = () => {
               </>
             ) : (
               <>
-                {announcement.text} - {announcement.videoUrl}
+                {announcement.textEn} - {announcement.textKan} - {announcement.videoUrl}
                 <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
                 <button onClick={() => deleteAnnouncement(announcement.id)}>Delete</button>
               </>
@@ -88,9 +92,15 @@ const AnnouncementManager = () => {
       <h3>Add New Announcement</h3>
       <input
         type="text"
-        placeholder="Announcement text"
-        value={newAnnouncement.text}
-        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, text: e.target.value })}
+        placeholder="English Text"
+        value={newAnnouncement.textEn}
+        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textEn: e.target.value })}
+      />
+      <input
+        type="text"
+        placeholder="Kannada Text"
+        value={newAnnouncement.textKan}
+        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textKan: e.target.value })}
       />
       <input
         type="text"
