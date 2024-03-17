@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { announcementsRoute } from '../utils/APIRoutes';
+import './AnnouncementManager.css'; // Import CSS file for styling
 
 const AnnouncementManager = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -50,65 +51,69 @@ const AnnouncementManager = () => {
   };
 
   return (
-    <div>
-      <h2>Announcement Manager</h2>
-      <ul>
-        {announcements.map((announcement) => (
-          <li key={announcement.id}>
-            {editingAnnouncement === announcement ? (
-              <>
-                <input
-                  type="text"
-                  placeholder="English Text"
-                  value={editingAnnouncement.textEn}
-                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textEn: e.target.value })}
-                />
-                <input
-                  type="text"
-                  placeholder="Kannada Text"
-                  value={editingAnnouncement.textKan}
-                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textKan: e.target.value })}
-                />
-                <input
-                  type="text"
-                  placeholder="Video URL"
-                  value={editingAnnouncement.videoUrl}
-                  onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, videoUrl: e.target.value })}
-                />
-                <button onClick={updateAnnouncement}>Update</button>
-                <button onClick={() => setEditingAnnouncement(null)}>Cancel</button>
-              </>
-            ) : (
-              <>
-                {announcement.textEn} - {announcement.textKan} - {announcement.videoUrl}
-                <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
-                <button onClick={() => deleteAnnouncement(announcement.id)}>Delete</button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="announcement-manager-container">
+      <h2 className="center">Announcement Manager</h2>
+      <div className="box">
+        <ul>
+          {announcements.map((announcement) => (
+            <li key={announcement.id}>
+              {editingAnnouncement === announcement ? (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="English Text"
+                    value={editingAnnouncement.textEn}
+                    onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textEn: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Kannada Text"
+                    value={editingAnnouncement.textKan}
+                    onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textKan: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Video URL"
+                    value={editingAnnouncement.videoUrl}
+                    onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, videoUrl: e.target.value })}
+                  />
+                  <button onClick={updateAnnouncement}>Update</button>
+                  <button onClick={() => setEditingAnnouncement(null)}>Cancel</button>
+                </div>
+              ) : (
+                <div>
+                  {announcement.textEn} - {announcement.textKan} - {announcement.videoUrl}
+                  <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
+                  <button onClick={() => deleteAnnouncement(announcement.id)}>Delete</button>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
 
-      <h3>Add New Announcement</h3>
-      <input
-        type="text"
-        placeholder="English Text"
-        value={newAnnouncement.textEn}
-        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textEn: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Kannada Text"
-        value={newAnnouncement.textKan}
-        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textKan: e.target.value })}
-      />
-      <input
-        type="text"
-        placeholder="Video URL"
-        value={newAnnouncement.videoUrl}
-        onChange={(e) => setNewAnnouncement({ ...newAnnouncement, videoUrl: e.target.value })}
-      />
-      <button onClick={addAnnouncement}>Add</button>
+        <h3 className="center">Add New Announcement</h3>
+        <div>
+          <input
+            type="text"
+            placeholder="English Text"
+            value={newAnnouncement.textEn}
+            onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textEn: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Kannada Text"
+            value={newAnnouncement.textKan}
+            onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textKan: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Video URL"
+            value={newAnnouncement.videoUrl}
+            onChange={(e) => setNewAnnouncement({ ...newAnnouncement, videoUrl: e.target.value })}
+          />
+          <button type="button" class="btn btn-success" onClick={addAnnouncement}>Add</button>
+        </div>
+      </div>
     </div>
   );
 };
