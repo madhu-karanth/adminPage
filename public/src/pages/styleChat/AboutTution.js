@@ -7,9 +7,10 @@ function AboutTuition({ getTranslatedText }) {
 return(
 <>
 <section className="Latest-text">
-<div className="container">
-        <div className="row">
-    <div className="late-text col-md-6">
+{/* <div className="container">
+        <div className="row"> */}
+    <div className="card-conatiner">
+    {/* <div className="late-text col-md-6"> */}
         <div className="card h-100">
             <div className="card-body pt-5">
                 <div className="icon-text text-center position-absolute">
@@ -52,8 +53,8 @@ return(
 </div>
 </div>
 </div>
-</div>
-</div>
+{/* </div>
+</div> */}
 </section>
 </>
 );

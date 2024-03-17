@@ -15,8 +15,7 @@ function Chat() {
 
   const getTranslatedText = (englishText, kannadaText) => {
     return language === "E" ? englishText : kannadaText;
-  };
-
+  };  
   return (
     <div>
       <Navbar
@@ -24,20 +23,21 @@ function Chat() {
         language={language}
         changeLanguage={changeLanguage}
       />
+      <div className="main-card-container">
       <LatestAnnouncements
         getTranslatedText={getTranslatedText}
       />
       <AboutTuition
         getTranslatedText={getTranslatedText}
       />
+      </div>
       <AboutCourses
         getTranslatedText={getTranslatedText}
       />
       <CustomComponent
         getTranslatedText={getTranslatedText}
       />
-      {/* Your other chat content goes here */}
-    </div>
+</div>
   );
 }
 
