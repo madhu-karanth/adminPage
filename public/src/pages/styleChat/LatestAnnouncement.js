@@ -46,10 +46,11 @@ function LatestAnnouncements({ getTranslatedText }) {
                         {announcements.map((announcement) => (
                           <tr key={announcement.id}>
                             <td>
-                              <div>
-                                <p className="announcement-text">{announcement.textEn}</p>
-                                <p className="announcement-text">{announcement.textKan}</p>
-                              </div>
+                            <div>
+        <p className="announcement-text">
+          {getTranslatedText(announcement.textEn, announcement.textKan)}
+        </p>
+      </div>
                             </td>
                             <td>
                               {announcement.videoURL && (
