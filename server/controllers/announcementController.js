@@ -40,18 +40,26 @@ const updateAnnouncement = async (req, res) => {
   }
 };
 
-// Delete an announcement
 const deleteAnnouncement = async (req, res) => {
   try {
     const { id } = req.params;
     const announcement = await Announcement.findById(id);
+    console.log('Announcement to be deleted:', announcement); // Log the announcement object
     if (!announcement) return res.status(404).json({ message: 'Announcement not found' });
 
     await announcement.remove();
     res.json({ message: 'Announcement deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error.name === 'CastError') {
+      res.status(400).json({ message: 'Invalid announcement ID' }); 
+    } else {
+      console.error('Error deleting announcement:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
   }
+  
+
+  
 };
 
 module.exports = { createAnnouncement, getAllAnnouncements, updateAnnouncement, deleteAnnouncement };

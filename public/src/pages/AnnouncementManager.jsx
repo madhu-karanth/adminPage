@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { announcementsRoute } from '../utils/APIRoutes';
-import './AnnouncementManager.css'; // Import CSS file for styling
+import './AnnouncementManager.css';
 
 const AnnouncementManager = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -44,13 +44,22 @@ const AnnouncementManager = () => {
   };
 
   const deleteAnnouncement = async (announcementId) => {
+    console.log('Deleting announcement with ID:', announcementId);
     try {
-      await axios.delete(`${announcementsRoute}${announcementId}`);
-      fetchAnnouncements();
+      await axios.delete(`${announcementsRoute}/${announcementId}`);
+      fetchAnnouncements(); 
     } catch (error) {
-      console.error('Error deleting announcement:', error);
+      if (error.response.status === 404) {
+        console.error('Announcement not found');
+      } else if (error.response.status === 400) {
+        console.error('Error deleting announcement:', error);
+        alert('An error occurred while deleting the announcement. Please try again later.'); // User-friendly message
+      } else {
+        console.error('Unexpected error deleting announcement:', error);
+      }
     }
   };
+  
 
   return (
     <div className="announcement-manager-container">
