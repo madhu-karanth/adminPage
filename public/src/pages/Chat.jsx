@@ -25,8 +25,10 @@ function Chat() {
       />
       <div className="main-card-container">
       <LatestAnnouncements
-        getTranslatedText={getTranslatedText}
-      />
+    language={language}
+    changeLanguage={changeLanguage}
+    getTranslatedText={getTranslatedText}
+/>
       <AboutTuition
         getTranslatedText={getTranslatedText}
       />
