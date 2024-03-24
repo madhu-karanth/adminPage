@@ -35,7 +35,7 @@ const AnnouncementManager = () => {
 
   const updateAnnouncement = async () => {
     try {
-      await axios.put(`${announcementsRoute}${editingAnnouncement.id}`, editingAnnouncement);
+      await axios.put(`${announcementsRoute}/${editingAnnouncement._id}`, editingAnnouncement);
       fetchAnnouncements();
       setEditingAnnouncement(null);
     } catch (error) {
@@ -44,29 +44,20 @@ const AnnouncementManager = () => {
   };
 
   const deleteAnnouncement = async (announcementId) => {
-    console.log('Deleting announcement with ID:', announcementId);
     try {
       await axios.delete(`${announcementsRoute}/${announcementId}`);
       fetchAnnouncements(); 
     } catch (error) {
-      if (error.response.status === 404) {
-        console.error('Announcement not found');
-      } else if (error.response.status === 400) {
-        console.error('Error deleting announcement:', error);
-        alert('An error occurred while deleting the announcement. Please try again later.'); // User-friendly message
-      } else {
-        console.error('Unexpected error deleting announcement:', error);
-      }
+      console.error('Error deleting announcement:', error);
     }
   };
-  
 
   return (
     <div className="announcement-manager-container">
       <h2 className="center">Announcement Manager</h2>
       <div className="box">
-      <div className="button-container">
-       <button className="add-button" onClick={() => setShowAddPopup(true)}>Add Announcement</button>
+        <div className="button-container">
+          <button className="add-button" onClick={() => setShowAddPopup(true)}>Add Announcement</button>
         </div>
 
         <div>
@@ -81,13 +72,47 @@ const AnnouncementManager = () => {
             </thead>
             <tbody>
               {announcements.map((announcement) => (
-                <tr key={announcement.id}>
-                  <td>{announcement.textEn}</td>
-                  <td>{announcement.textKan}</td>
-                  <td>{announcement.videoUrl}</td>
+                <tr key={announcement._id}>
                   <td>
-                    <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
-                    <button onClick={() => deleteAnnouncement(announcement.id)}>Delete</button>
+                    {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
+                      <input
+                        type="text"
+                        value={editingAnnouncement.textEn}
+                        onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textEn: e.target.value })}
+                      />
+                    ) : (
+                      announcement.textEn
+                    )}
+                  </td>
+                  <td>
+                    {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
+                      <input
+                        type="text"
+                        value={editingAnnouncement.textKan}
+                        onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, textKan: e.target.value })}
+                      />
+                    ) : (
+                      announcement.textKan
+                    )}
+                  </td>
+                  <td>
+                    {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
+                      <input
+                        type="url"
+                        value={editingAnnouncement.videoUrl}
+                        onChange={(e) => setEditingAnnouncement({ ...editingAnnouncement, videoUrl: e.target.value })}
+                      />
+                    ) : (
+                      <a href={announcement.videoUrl} target="_blank" rel="noopener noreferrer">{announcement.videoUrl}</a>
+                    )}
+                  </td>
+                  <td>
+                    {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
+                      <button onClick={updateAnnouncement}>Update</button>
+                    ) : (
+                      <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
+                    )}
+                    <button onClick={() => deleteAnnouncement(announcement._id)}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -112,7 +137,7 @@ const AnnouncementManager = () => {
                 onChange={(e) => setNewAnnouncement({ ...newAnnouncement, textKan: e.target.value })}
               />
               <input
-                type="text"
+                type="url"
                 placeholder="Video URL"
                 value={newAnnouncement.videoUrl}
                 onChange={(e) => setNewAnnouncement({ ...newAnnouncement, videoUrl: e.target.value })}
@@ -126,6 +151,5 @@ const AnnouncementManager = () => {
     </div>
   );
 };
-
 
 export default AnnouncementManager;
