@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Chat from './pages/Chat';
 import Admin from './pages/AnnouncementManager';
 import LandingPage from './pages/LandingPage';
-import './styles/tailwind.css'
+
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

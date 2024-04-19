@@ -1,0 +1,20 @@
+.landing-page-container {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Set the container height to full viewport height */
+  }
+  
+  .transparent-box {
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  }
+  .button-container {
+    margin-right: 10px; /* Add space between buttons */
+  }
+  
+  .button-container:last-child {
+    margin-right: 0; /* Remove margin from the last button container */
+  }
