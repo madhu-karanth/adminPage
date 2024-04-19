@@ -42,7 +42,7 @@ function LatestAnnouncements({ getTranslatedText }) {
                 <table cellSpacing="0" id="ContentPlaceHolder1_Gridlatestannoc" style={{ borderCollapse: 'collapse' }}>
                   <tbody>
                     {announcements.map((announcement) => (
-                      <tr key={announcement.id}>
+                      <tr key={announcement._id}>
                         <td>
                           <div>
                             {/* Render textEn and textKan as clickable links */}
