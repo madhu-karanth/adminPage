@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './style.css';
-import './style1.css';
+import './styles/style.css';
+import './styles/style1.css';
 
 function Navbar({ getTranslatedText, language, changeLanguage }) {
     return (

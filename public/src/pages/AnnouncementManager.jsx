@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { announcementsRoute } from '../utils/APIRoutes';
-import './AnnouncementManager.css';
+import '../styles/AnnouncementManager.css';
 
 const AnnouncementManager = () => {
   const [announcements, setAnnouncements] = useState([]);

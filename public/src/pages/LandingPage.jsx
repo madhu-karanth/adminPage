@@ -17,11 +17,11 @@ const LandingPage = () => {
       <div className="transparent-box">
         <h1>Welcome to Our App</h1>
         <div className="button-container">
-          <button onClick={() => handleRedirect('user')}>USER</button>
+          <button onClick={() => handleRedirect('user')}>CLICK HERE FOR USER</button>
         </div>
         
         <div className="button-container">
-          <button onClick={() => handleRedirect('login')}>ADMIN</button>
+          <button onClick={() => handleRedirect('login')}>CLICK HERE FOR ADMIN</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 // AboutCourses.js
 import React from "react";
-import './style.css';
-import './style1.css';
+import './styles/style.css';
+import './styles/style1.css';
 
 function AboutCourses({ getTranslatedText }) {
 return(

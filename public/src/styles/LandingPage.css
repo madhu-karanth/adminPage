@@ -7,9 +7,11 @@
   
   .transparent-box {
     background-color: rgba(255, 255, 255, 0.5); /* Transparent white background */
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    height: 300px;
+    width: 520px;
   }
   .button-container {
     margin-right: 10px; /* Add space between buttons */

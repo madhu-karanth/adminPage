@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './style.css';
-import './style1.css';
+import './styles/style.css';
+import './styles/style1.css';
  
 function LatestAnnouncements({ getTranslatedText }) {
   const [announcements, setAnnouncements] = useState([]);
