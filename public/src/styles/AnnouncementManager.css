@@ -1,122 +1,133 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow: hidden; /* Prevent overflow */
-    background-color: #ffffff; /* Set background color to white or any color you prefer */
-  }
-  
-  .announcement-manager-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Prevent overflow */
-    background-color: #8C6A5D;
-  }
-  
-  .center{
-    font-family: "Gentium Plus", serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-  .box {
-    width: calc(100vw - 40px); /* Occupy full width of the viewport minus padding */
-    height: 100vh; /* Occupy full height of the viewport */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    box-sizing: border-box; /* Include padding and border in the box's total width and height */
-    background-color: #EEE4B1;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
-    padding-left: 20px; /* Add padding to the left */
-  }
-  
-  .center {
-    text-align: center;
-  }
-  
-  /* Form styling */
-  input[type="text"],
-  input[type="url"]{
-    width: calc(100% - 22px); /*Occupy 100% width minus padding and border */
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; /* Include padding and border in the input's total width */
-    transition: border-color 0.3s; /* Add transition for smooth hover effect */
-  }
-  
-  input[type="text"]:focus, 
-  input[type="url"]:focus {
-    border-color: #007bff; /* Change border color on focus */
-    outline: none; /* Remove default focus outline */
-  }
-  .button-container {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-  }
-  
-  .add-button {
-    padding: 10px 20px; /* Adjust padding as needed */
-    font-size: 16px; /* Adjust font size as needed */
-  }
-  
-  button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Add transition for smooth hover effect */
-  }
-  
-  button:hover {
-    background-color: #0056b3; /* Darker shade of blue on hover */
-  }
-  .popup-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px; /* Adjust width as needed */
-    background-color: white;
-    border: 2px solid #ccc; /* Border color */
-    padding: 20px;
-    border-radius: 8px; /* Adjust border radius as needed */
-    z-index: 999;
-  }
-  .announcement-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 16px;
-  }
-  
-  .announcement-table th,
-  .announcement-table td {
-    padding: 12px;
-    /* border: 1px solid #ccc; */
-  }
-  
-  .announcement-table th {
-    text-align: left;
-  }
-  .announcement-table button {
-    font-size: 14px;
-    padding: 6px 10px;
-    margin-right: 5px;
-  }
-  
-  .popup-container input[type="text"],
-  .popup-container button {
-    margin: 5px 0;
-    padding: 8px;
-    font-size: 16px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent overflow */
+  background-color: #ffffff; /* Set background color to white or any color you prefer */
+}
+
+.announcement-manager-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Prevent overflow */
+  background-color: #8C6A5D;
+}
+
+.center{
+  font-family: "Gentium Plus", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+.box {
+  width: calc(100vw - 40px); /* Occupy full width of the viewport minus padding */
+  height: 100vh; /* Occupy full height of the viewport */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  box-sizing: border-box; /* Include padding and border in the box's total width and height */
+  background-color: #EEE4B1;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
+  padding-left: 20px; /* Add padding to the left */
+}
+
+.center {
+  text-align: center;
+}
+
+/* Form styling */
+input[type="text"] {
+  width: calc(100% - 22px); /*Occupy 100% width minus padding and border */
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding and border in the input's total width */
+  transition: border-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+input[type="text"]:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default focus outline */
+}
+input[type="url"] {
+  width: calc(100% - 22px); /*Occupy 100% width minus padding and border */
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding and border in the input's total width */
+  transition: border-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+input[type="url"]:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default focus outline */
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.add-button {
+  padding: 10px 20px ; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for smooth hover effect */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; /* Adjust width as needed */
+  background-color: white;
+  border: 2px solid #ccc; /* Border color */
+  padding: 20px;
+  border-radius: 8px; /* Adjust border radius as needed */
+  z-index: 999;
+}
+.announcement-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+.announcement-table th,
+.announcement-table td {
+  padding: 12px;
+  /* border: 1px solid #ccc; */
+}
+
+.announcement-table th {
+  text-align: left;
+}
+.announcement-table button {
+  font-size: 14px;
+  padding: 6px 10px;
+  margin-right: 5px;
+}
+
+.popup-container input[type="text"],
+.popup-container button {
+  margin: 5px 0;
+  padding: 8px;
+  font-size: 16px;
+}

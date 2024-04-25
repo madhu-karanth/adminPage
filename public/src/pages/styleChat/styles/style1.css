@@ -75,7 +75,14 @@ body{
     align-items: center;
     margin: 20px 0; /* Adjust margin as needed */
 }
-
+.justified-paragraph {
+    font-size: 20px; /* Adjust as needed */
+    display: flex;
+    justify-content: justify;
+    text-align: justify;
+    color: #ffffff; /* Optional: Additional control for some browsers */
+  }
+  
 /* Style for individual images */
 .gallery-image {
     width: 30%; /* Adjust the width of each image */
@@ -95,7 +102,7 @@ body{
   /* Rest of your existing styles */
   
   .announ-text{
-      color: #1347b8;
+      color: black;
   }
   .post-text{
       background-color: #1a1a24;

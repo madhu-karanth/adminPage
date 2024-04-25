@@ -1,16 +1,28 @@
 const Announcement = require('../model/announcementModel');
 
 // Create a new announcement
-const createAnnouncement = async (req, res) => {
+createAnnouncement = async (req, res) => {
   try {
-    const { textEn, textKan, videoUrl } = req.body;
-    const announcement = new Announcement({ textEn, textKan, videoUrl });
-    await announcement.save();
-    res.status(201).json(announcement);
+      const { textEn, textKan, videoUrl } = req.body;
+      const { filename } = req.file;
+
+      const newAnnouncement = new Announcement({
+          textEn,
+          textKan,
+          videoUrl,
+          filename
+      });
+
+      await newAnnouncement.save();
+      
+      res.status(201).json({ message: "Announcement created successfully" });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+      console.error("Error creating announcement:", error);
+      res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
 
 const getAllAnnouncements = async (req, res) => {
   try {

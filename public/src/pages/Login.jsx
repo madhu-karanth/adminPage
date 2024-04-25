@@ -97,7 +97,7 @@ function Login() {
             onChange={(e)=>handleChange(e)}
           />
           <button type='submit'>Login</button>
-          <span>Don't have an account?<Link to={'/register'}>Create an account</Link></span>
+         {/* <span>Don't have an account?<Link to={'/register'}>Create an account</Link></span> */}
         </form>
       </FormContainer>
       <ToastContainer>

@@ -18,7 +18,12 @@ const announcementSchema = new mongoose.Schema({
         required: true,
         max: 50,
         unique: true,
-    }
+    },
+    filename: {
+        type: String,
+        required: true,
+      }
+    
 })
 
 module.exports = mongoose.model("Announcements",announcementSchema);

@@ -1,4 +1,4 @@
-
+   
 :root {
     --blue:#007bff;
     --indigo:#6610f2;
@@ -17,14 +17,14 @@
     --secondary:#6c757d;
     --success:#28a745;
     --info:#17a2b8;
-    --warning:#ffc107;
+    --warning:#ff c107;
     --danger:#dc3545;
     --light:#f8f9fa;
     --dark:#343a40;
     --breakpoint-xs:0;
     --breakpoint-sm:576px;
     --breakpoint-md:768px;
-    --breakpoint-lg:992px;
+    --breakpoint-lg:992px;      
     --breakpoint-xl:1200px;
     --font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     --font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
@@ -48,32 +48,13 @@ body {
     margin: 0;
     font-family: 'Lato', sans-serif; /* Add your preferred font-family */
   }
-
-#backgroundContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 300%;
-    height: 100%;
-    z-index: -1;
-    display: flex;
-    transition: transform 1s ease-in-out;
-  }
-
-  .backgroundImage {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(75%);/* Adjust the filter as needed*/
-  } 
-
 #contentContainer {
     position: relative;
     z-index: 1; /* Ensure the content is above the background*/
     height: 100vh;/* Set the height to 100% of the viewport height*/
     overflow: auto;
     background-repeat: no-repeat;
+    background-color:#19747E;
   }
 body {
     margin: 0;
@@ -81,25 +62,24 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: black;
     text-align: left;
-    background-color: #fff;
+    /* background-color:#66FCF1; */
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size:cover;
     background-position: center;
-   filter: grayscale(50%);
+   /* filter: grayscale(50%); */
 }
 #navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    /* background-color: #333; Add your preferred background color */
-    color: white; /*Add your preferred text color*/
-    /* padding: 10px; */
+    /* background-color: #66FCF1; */
     text-align: center;
     z-index: 100; /*Make sure the z-index is higher than the background container*/
+
   } 
   
 .background-overlay {
@@ -117,7 +97,76 @@ body {
 [tabindex="-1"]:focus {
     outline: 0 !important;
 }
+.announcements-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the boxes horizontally */
+    gap: 1rem;
+    align-items: center;
+    /* background-color: #000; */
+    width: 100% ;
+    margin-left:120px;
+    margin-right:120px;
+    color: #000;
+    z-index: 2;
 
+
+  }
+  
+  .announcement-box {
+    background-color: #66FCF1;
+    padding: 1rem;
+    border-radius: 5px;
+    height: 180px;
+    width: 350px;
+    color: #000;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .announcement-title {
+    font-weight: bold; 
+    font-size: 1.3rem;
+    color: #000000;
+    z-index: 1;
+    padding: 1rem;
+  }
+  
+  .announcement-pdf,
+  .announcement-video {
+    font-weight: bold; 
+    font-size: 1.1rem;
+    color: #E6A4B4;
+    z-index: 1;
+    padding-bottom: 0.5rem;
+  }
+    
+  .latest-announcements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    width:100% ;
+    margin: 0 auto;
+    /* background-color: pink; */
+    
+    padding-left: auto;
+    padding-right: auto;
+  }
+  .welcome-text.blue {
+    /* font-family:"Sans Serif"; Replace with your font name */
+    color: rgb(197, 195, 210);
+    font-size: 1.5em;/* Example color change */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  .welcome-text.red {
+    font-size: 1.5em;/* Example color change */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    color:#0d0c14;
+  }
 hr {
     box-sizing: content-box;
     height: 0;
@@ -127,6 +176,7 @@ hr {
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: .5rem;
+    font-weight: 500;
 }
 p {
     margin-top: 0;
@@ -194,7 +244,7 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color:black;
     text-decoration: none;
     background-color: transparent;
 }
@@ -4166,9 +4216,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: .5rem 1rem;
+    /* background-color:#66FCF1 ; */
 }
 
-    /* .navbar > .container, .navbar > .container-fluid {
+    .navbar > .container, .navbar > .container-fluid {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-wrap: wrap;
@@ -4177,9 +4228,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         align-items: center;
         -ms-flex-pack: justify;
         justify-content: space-between;
-    } */
+        /* background-color: #66FCF1; */
+    }
 
-/* .navbar-brand {
+.navbar-brand {
     display: inline-block;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
@@ -4187,11 +4239,12 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+    /* background-color: #66FCF1; */
 }
 
     .navbar-brand:focus, .navbar-brand:hover {
         text-decoration: none;
-    } */
+    }
 
 .navbar-nav {
     display: -ms-flexbox;
@@ -4201,6 +4254,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+    /* background-color: #66FCF1; */
 }
 
     .navbar-nav .nav-link {
@@ -4226,6 +4280,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     flex-grow: 1;
     -ms-flex-align: center;
     align-items: center;
+    /* background-color: #66FCF1; */
 }
 
 .navbar-toggler {
@@ -9848,9 +9903,9 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover {
     font-style: italic !important;
 }
 
-.text-white {
+/* .text-white {
     color: #fff !important;
-}
+} */
 
 .text-primary {
     color: #007bff !important;
@@ -9928,9 +9983,9 @@ a.text-dark:focus, a.text-dark:hover {
     color: rgba(0,0,0,.5) !important;
 }
 
-.text-white-50 {
+/* .text-white-50 {
     color: rgba(255,255,255,.5) !important;
-}
+} */
 
 .text-hide {
     font: 0/0 a;

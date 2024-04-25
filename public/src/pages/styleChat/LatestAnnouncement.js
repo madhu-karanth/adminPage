@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './styles/style.css';
-import './styles/style1.css';
- 
+import '../styleChat/styles/style.css';
+import '../styleChat/styles/style1.css';
+
 function LatestAnnouncements({ getTranslatedText }) {
   const [announcements, setAnnouncements] = useState([]);
 
@@ -19,55 +19,51 @@ function LatestAnnouncements({ getTranslatedText }) {
       console.error('Error fetching announcements:', error);
     }
   };
-
+  const openVideo = (videoUrl) => {
+    window.open(videoUrl, '_blank');
+  };
   return (
     <>
-      <section className="Latest-text">
-        <div className="card-conatiner">
-          <div className="card h-100">
-            <div className="card-body pt-6">
-              <div className="icon-text text-center position-absolute">
-                <div className="icon-box">
-                  <div className="icon-box-inner">
-                    <i className="icon-body fas fa-bell fa-5x text-white"></i>
-                  </div>
+      <section className="latest-announcements">  
+      <h1 className={`welcome-text text-center`} style={{ fontFamily: 'sans-serif' }}>
+      <b className="welcome-text blue">Optimize Your Skills:  </b>
+      <b className="welcome-text red">Powerful Tools & Resources</b></h1><br></br><br></br>
+        <section className="Latest-text"> 
+          <div className="announcements-container">
+            {announcements.map((announcement) => (
+              <div key={announcement._id} className="announcement-box">
+                <p className="announcement-title">
+                  {getTranslatedText(announcement.textEn, announcement.textKan)}
+                </p>
+                <div className="announcement-pdf">
+                <a
+                  href="#"  // Prevent default link behavior (navigation)
+                  onClick={(event) => {
+                    event.preventDefault(); // Added to prevent default routing
+                    console.log(announcement.filename);
+                    window.open(`http://localhost:5000/files/${announcement.filename}`, '_blank');
+                  }}
+                  style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                >
+                  View PDF
+                </a>
+                </div>
+                <div className="announcement-video">
+                  <a
+                    href="#"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openVideo(announcement.videoUrl);
+                    }}
+                    style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                  >
+                    Watch Video
+                  </a>
                 </div>
               </div>
-              <div className="card-text text-center mt-5">
-                <h2 className="announ-text py-2 font-weight-bolder">
-                  <span id="ContentPlaceHolder1_keaid1274">{getTranslatedText("Latest Announcements", "ಕೊನೆಯ ಘೋಷಣೆಗಳು")}</span>
-                </h2>
-              </div>
-              <div style={{ height: '300px' }} className="overflow-auto">
-                <table cellSpacing="0" id="ContentPlaceHolder1_Gridlatestannoc" style={{ borderCollapse: 'collapse' }}>
-                  <tbody>
-                    {announcements.map((announcement) => (
-                      <tr key={announcement._id}>
-                        <td>
-                          <div>
-                            {/* Render textEn and textKan as clickable links */}
-                            <p className="announcement-text">
-                              <a href={announcement.videoUrl} target="_blank" rel="noreferrer">
-                                {getTranslatedText(announcement.textEn, announcement.textKan)}
-                              </a>
-                            </p>
-                          </div>
-                        </td>
-                        <td>
-                          {announcement.videoUrl && (
-                            <a href={announcement.videoUrl} target="_blank" rel="noreferrer">
-                              
-                            </a>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            ))}
           </div>
-        </div>
+        </section>
       </section>
     </>
   );

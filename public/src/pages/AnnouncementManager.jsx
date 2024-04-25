@@ -5,12 +5,14 @@ import '../styles/AnnouncementManager.css';
 
 const AnnouncementManager = () => {
   const [announcements, setAnnouncements] = useState([]);
-  const [newAnnouncement, setNewAnnouncement] = useState({ textEn: '', textKan: '', videoUrl: '' });
+  const [newAnnouncement, setNewAnnouncement] = useState({ textEn: '', textKan: '', videoUrl: '', file: null });
   const [editingAnnouncement, setEditingAnnouncement] = useState(null);
   const [showAddPopup, setShowAddPopup] = useState(false);
+  const [pdfFiles, setPdfFiles] = useState([]);
 
   useEffect(() => {
     fetchAnnouncements();
+    fetchPdfFiles();
   }, []);
 
   const fetchAnnouncements = async () => {
@@ -22,20 +24,65 @@ const AnnouncementManager = () => {
     }
   };
 
+  const fetchPdfFiles = async () => {
+    try {
+      const response = await axios.get(announcementsRoute);
+      setPdfFiles(response.data);
+    } catch (error) {
+      console.error('Error fetching PDF files:', error);
+    }
+  };
+
+  const viewPDF = (filename) => {
+    const pdfUrl = `http://localhost:5000/files/${filename}`;
+    window.open(pdfUrl, '_blank');
+  };
+
   const addAnnouncement = async () => {
     try {
-      await axios.post(announcementsRoute, newAnnouncement);
+      const formData = new FormData();
+      formData.append('textEn', newAnnouncement.textEn);
+      formData.append('textKan', newAnnouncement.textKan);
+      formData.append('videoUrl', newAnnouncement.videoUrl);
+      formData.append('file', newAnnouncement.file);
+
+      const response = await axios.post(announcementsRoute, formData);
       fetchAnnouncements();
-      setNewAnnouncement({ textEn: '', textKan: '', videoUrl: '' });
+      setNewAnnouncement({ textEn: '', textKan: '', videoUrl: '', file: null });
       setShowAddPopup(false);
     } catch (error) {
-      console.error('Error adding announcement:', error);
+      console.error('Error adding announcement:', error.response ? error.response.data : error.message);
     }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setNewAnnouncement({ ...newAnnouncement, file });
+  };
+
+  const editAnnouncement = (announcement) => {
+    setEditingAnnouncement(announcement);
+  };
+
+  const cancelEdit = () => {
+    setEditingAnnouncement(null);
   };
 
   const updateAnnouncement = async () => {
     try {
-      await axios.put(`${announcementsRoute}/${editingAnnouncement._id}`, editingAnnouncement);
+      const formData = new FormData();
+      formData.append('textEn', editingAnnouncement.textEn);
+      formData.append('textKan', editingAnnouncement.textKan);
+      formData.append('videoUrl', editingAnnouncement.videoUrl);
+      if (editingAnnouncement.file) {
+        formData.append('file', editingAnnouncement.file);
+      }
+
+      await axios.put(`${announcementsRoute}/${editingAnnouncement._id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       fetchAnnouncements();
       setEditingAnnouncement(null);
     } catch (error) {
@@ -46,7 +93,7 @@ const AnnouncementManager = () => {
   const deleteAnnouncement = async (announcementId) => {
     try {
       await axios.delete(`${announcementsRoute}/${announcementId}`);
-      fetchAnnouncements(); 
+      fetchAnnouncements();
     } catch (error) {
       console.error('Error deleting announcement:', error);
     }
@@ -67,6 +114,7 @@ const AnnouncementManager = () => {
                 <th>English Text</th>
                 <th>Kannada Text</th>
                 <th>Video URL</th>
+                <th>PDF Path</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -107,11 +155,14 @@ const AnnouncementManager = () => {
                     )}
                   </td>
                   <td>
-                    {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
-                      <button onClick={updateAnnouncement}>Update</button>
+                    <button onClick={() => viewPDF(announcement.filename)}>View PDF</button>
+                  </td>
+                  <td>
+                    {/* {editingAnnouncement && editingAnnouncement._id === announcement._id ? (
+                      <><button onClick={updateAnnouncement}>Update</button><button onClick={cancelEdit}>Cancel</button></>
                     ) : (
                       <button onClick={() => setEditingAnnouncement(announcement)}>Edit</button>
-                    )}
+                    )} */}
                     <button onClick={() => deleteAnnouncement(announcement._id)}>Delete</button>
                   </td>
                 </tr>
@@ -141,6 +192,12 @@ const AnnouncementManager = () => {
                 placeholder="Video URL"
                 value={newAnnouncement.videoUrl}
                 onChange={(e) => setNewAnnouncement({ ...newAnnouncement, videoUrl: e.target.value })}
+              />
+              <input
+                type="file"
+                accept='application/pdf'
+                required
+                onChange={handleFileChange}
               />
               <button onClick={addAnnouncement}>Add</button>
               <button onClick={() => setShowAddPopup(false)}>Cancel</button>

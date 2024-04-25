@@ -5,8 +5,9 @@ import Login from './pages/Login';
 import Chat from './pages/Chat';
 import Admin from './pages/AnnouncementManager';
 import LandingPage from './pages/LandingPage';
-
-
+import ContactUs from './pages/ContactUs';
+import CoursesAvailable from './pages/styleChat/CoursesAvailable';
+import AboutCourses  from './pages/styleChat/AboutCourse';
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -34,6 +35,8 @@ console.log("isLoggedIn value in conditional rendering:", isLoggedIn);
         <Route path='/' element={<LandingPage/>}/>
         <Route path="/register" element={<Register />} />
         <Route path='/chat' element={<Chat/>}/>
+        <Route path="/contact" element={<ContactUs/>} />
+        <Route path="/courses" element={<CoursesAvailable />} />
       </Routes>
     </BrowserRouter>
   );

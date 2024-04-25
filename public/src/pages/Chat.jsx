@@ -5,6 +5,8 @@ import LatestAnnouncements from './styleChat/LatestAnnouncement';
 import AboutTuition from './styleChat/AboutTution';
 import AboutCourses from './styleChat/AboutCourse';
 import CustomComponent from './styleChat/CustomComponent';
+import FloatSquares from './Background';
+
 
 function Chat() {
   const [language, setLanguage] = useState("E"); // E for English, K for Kannada
@@ -17,6 +19,8 @@ function Chat() {
     return language === "E" ? englishText : kannadaText;
   };  
   return (
+    <div className="App">
+    <FloatSquares />
     <div>
       <Navbar
         getTranslatedText={getTranslatedText}
@@ -29,9 +33,9 @@ function Chat() {
     changeLanguage={changeLanguage}
     getTranslatedText={getTranslatedText}
 />
-      <AboutTuition
+      {/* <AboutTuition
         getTranslatedText={getTranslatedText}
-      />
+      /> */}
       </div>
       <AboutCourses
         getTranslatedText={getTranslatedText}
@@ -39,6 +43,7 @@ function Chat() {
       <CustomComponent
         getTranslatedText={getTranslatedText}
       />
+</div>
 </div>
   );
 }
