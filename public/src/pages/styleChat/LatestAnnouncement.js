@@ -26,8 +26,10 @@ function LatestAnnouncements({ getTranslatedText }) {
     <>
       <section className="latest-announcements">  
       <h1 className={`welcome-text text-center`} style={{ fontFamily: 'sans-serif' }}>
-      <b className="welcome-text blue">Optimize Your Skills:  </b>
-      <b className="welcome-text red">Powerful Tools & Resources</b></h1><br></br><br></br>
+      {/* <h1 className="welcome-text"> */}
+  <span className="welcome-text blue">{getTranslatedText('Optimize Your Skills:', 'ಕೌಶಲ್ಯಗಳನ್ನು ಹೆಚ್ಚಿಸಿ:')}</span>
+  <span className="welcome-text red">{getTranslatedText('Powerful Tools & Resources', 'ಬಲವಾದ ಸಾಧನಗಳು ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳು')}</span>
+</h1>
         <section className="Latest-text"> 
           <div className="announcements-container">
             {announcements.map((announcement) => (
