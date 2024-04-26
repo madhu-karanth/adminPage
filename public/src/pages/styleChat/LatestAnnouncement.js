@@ -47,7 +47,7 @@ function LatestAnnouncements({ getTranslatedText }) {
                   }}
                   style={{ textDecoration: 'underline', cursor: 'pointer' }}
                 >
-                  View PDF
+                  {getTranslatedText('View PDF', 'PDF ವೀಕ್ಷಿಸಿ')}
                 </a>
                 </div>
                 <div className="announcement-video">
@@ -59,7 +59,7 @@ function LatestAnnouncements({ getTranslatedText }) {
                     }}
                     style={{ textDecoration: 'underline', cursor: 'pointer' }}
                   >
-                    Watch Video
+                  {getTranslatedText('Watch Video','ವೀಡಿಯೊವನ್ನು ವೀಕ್ಷಿಸಿ')}
                   </a>
                 </div>
               </div>
